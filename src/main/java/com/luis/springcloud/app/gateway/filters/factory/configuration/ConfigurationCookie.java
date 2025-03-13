@@ -2,9 +2,10 @@ package com.luis.springcloud.app.gateway.filters.factory.configuration;
 
 public class ConfigurationCookie {
 
-    private String name;
+        private String name;
         private String value;
         private String message;
+        
         public String getName() {
             return name;
         }
