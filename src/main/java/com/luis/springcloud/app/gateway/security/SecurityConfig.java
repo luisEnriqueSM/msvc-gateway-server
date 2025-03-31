@@ -14,7 +14,7 @@ public class SecurityConfig {
     SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) throws Exception{
         return http.authorizeExchange(authz -> {
             authz.pathMatchers("/authorized", "/logout").permitAll()
-            .pathMatchers(HttpMethod.GET, "/api/items", "/api/products/", "/api/users/").permitAll()
+            .pathMatchers(HttpMethod.GET, "/api/items", "/api/products", "/api/users").permitAll()
             .pathMatchers(HttpMethod.GET, "/api/items/{id}", "/api/products/{id}", "/api/users/{id}").hasAnyRole("ADMIN", "USER")
             .pathMatchers("/api/items/**", "/api/products/**", "/api/users/**").hasRole("ADMIN")
             .anyExchange().authenticated();
