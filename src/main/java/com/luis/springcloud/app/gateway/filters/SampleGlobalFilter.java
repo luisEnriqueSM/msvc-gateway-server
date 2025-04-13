@@ -23,7 +23,7 @@ public class SampleGlobalFilter implements GlobalFilter, Ordered{
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         
-        logger.info("ejecutando el filtro antes del request PRE");
+        //logger.info("ejecutando el filtro antes del request PRE");
 
         ServerHttpRequest mutatedRequest = exchange.getRequest()
                     .mutate()
@@ -33,7 +33,7 @@ public class SampleGlobalFilter implements GlobalFilter, Ordered{
         ServerWebExchange mutatedExchange = exchange.mutate()
                     .request(mutatedRequest)
                     .build();
-
+        logger.info("Llamada filtro SampleGlobalFilter::doFilter");
         return chain.filter(mutatedExchange).then(Mono.fromRunnable(() -> {
             logger.info("ejecutando el filtro POST response");
             String token = mutatedExchange.getRequest().getHeaders().getFirst("token");
